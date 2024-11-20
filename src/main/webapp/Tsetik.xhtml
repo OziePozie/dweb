@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <title>ChZahaa</title>
+   <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<h:body>
+   <h:form>
+      <h:panelGrid id="main-grid" columns="2">
+         <h:outputPanel id="header-plate" colspan="2">
+            <a href="https://ooo.eeeee.ooo/"> <h:outputText value="пиписи" class="left-aligned" /></a>
+            <h:outputText value="228797" class="right-aligned" />
+         </h:outputPanel>
+
+         <h:panelGrid id="graph-plate" styleClass="content-plate">
+            <h:panelGroup class="plate-top">
+               <h2 class="plate-top-title">ZZZ</h2>
+            </h:panelGroup>
+
+            <h:outputPanel class="container">
+               <h:outputPanel class="left-block" id="graph">
+                  <section class="block plot-section">
+                     <div class="graph">
+                        <svg height="300" width="300" xmlns="http://www.w3.org/2000/svg">
+                           <!-- Оси со стрелками -->
+                           <line stroke="gray" x1="0" x2="300" y1="150" y2="150"/>
+                           <line stroke="gray" x1="150" x2="150" y1="0" y2="300"/>
+                           <polygon fill="black" points="150,0 144,15 156,15" stroke="white"/>
+                           <polygon fill="black" points="300,150 285,156 285,144" stroke="white"/>
+                           <!-- Засечки -->
+                           <line stroke="gray" x1="200" x2="200" y1="155" y2="145"/>
+                           <line stroke="gray" x1="250" x2="250" y1="155" y2="145"/>
+                           <line stroke="gray" x1="50" x2="50" y1="155" y2="145"/>
+                           <line stroke="gray" x1="100" x2="100" y1="155" y2="145"/>
+                           <line stroke="gray" x1="145" x2="155" y1="100" y2="100"/>
+                           <line stroke="gray" x1="145" x2="155" y1="50" y2="50"/>
+                           <line stroke="gray" x1="145" x2="155" y1="200" y2="200"/>
+                           <line stroke="gray" x1="145" x2="155" y1="250" y2="250"/>
+                           <!-- Подписи к засечкам -->
+                           <text fill="black" x="195" y="140">R/2</text>
+                           <text fill="black" x="248" y="140">R</text>
+                           <text fill="black" x="40" y="140">-R</text>
+                           <text fill="black" x="90" y="140">-R/2</text>
+                           <text fill="black" x="160" y="105">R/2</text>
+                           <text fill="black" x="160" y="55">R</text>
+                           <text fill="black" x="160" y="205">-R/2</text>
+                           <text fill="black" x="160" y="255">-R</text>
+                           <text fill="black" x="160" y="10">Y</text>
+                           <text fill="black" x="290" y="140">X</text>
+                           <!-- Прямоугольники и полигоны -->
+                           <rect x="90" y="50" width="120" height="25" fill="#0000FF" fill-opacity="0.5" stroke="#0000FF"/>
+                           <rect x="90" y="180" width="120" height="25" fill="#0000FF" fill-opacity="0.5" stroke="#0000FF"/>
+                           <rect x="90" y="115" width="120" height="25" fill="#0000FF" fill-opacity="0.5" stroke="#0000FF"/>
+                           <polygon fill="#0000FF" fill-opacity="1" points="185,75 90,180 115,180 210,75" stroke="#0000FF"/>
+                           <polygon fill="#0000FF" fill-opacity="0.5" points="90,115 115,115 155,75 130,75" stroke="#0000FF"/>
+                           <polygon fill="#0000FF" fill-opacity="0.5" points="210,140 185,140 150,180 175,180" stroke="#0000FF"/>
+                           <line stroke="white" stroke-width="3" stroke-opacity="0.7" x1="211" x2="116" y1="75" y2="180"/>
+                           <circle cx="150" cy="150" id="target-dot" r="0" stroke="white" fill="white"/>
+                        </svg>
+                     </div>
+                  </section>
+               </h:outputPanel>
+            </h:outputPanel>
+         </h:panelGrid>
+
+         <h:panelGrid id="table-plate" rowspan="2" class="content-plate">
+            <h:panelGroup class="plate-top">
+               <h2 class="plate-top-title">Табло</h2>
+            </h:panelGroup>
+
+            <h:outputPanel class="scroll-container">
+               <h:dataTable id="result-table" value="#{bean.resultList}" var="result">
+                  <h:column>
+                     <f:facet name="header">X</f:facet>
+                     <h:outputText value="#{result.x}"/>
+                  </h:column>
+                  <h:column>
+                     <f:facet name="header">Y</f:facet>
+                     <h:outputText value="#{result.y}"/>
+                  </h:column>
+                  <h:column>
+                     <f:facet name="header">R</f:facet>
+                     <h:outputText value="#{result.r}"/>
+                  </h:column>
+                  <h:column>
+                     <f:facet name="header">Текущий тайм</f:facet>
+                     <h:outputText value="#{result.currentTime}"/>
+                  </h:column>
+                  <h:column>
+                     <f:facet name="header">Время тайм</f:facet>
+                     <h:outputText value="#{result.time}"/>
+                  </h:column>
+                  <h:column>
+                     <f:facet name="header">Хит результат</f:facet>
+                     <h:outputText value="#{result.hitResult}"/>
+                  </h:column>
+               </h:dataTable>
+            </h:outputPanel>
+         </h:panelGrid>
+
+         <h:panelGrid id="values-plate" class="content-plate">
+            <h:panelGroup class="plate-top">
+               <h2 class="plate-top-title">Параметрычи</h2>
+            </h:panelGroup>
+
+            <h:form id="input-form">
+               <h:panelGrid id="input-grid">
+                  <h:outputLabel for="x-text-input" value="X:"/>
+                  <h:inputText id="x-text-input" value="#{bean.xval}" maxlength="10" autocomplete="off" placeholder="текстиком циферки напишите от -3 до 3..."/>
+
+                  <h:outputLabel for="yval" value="Y:"/>
+                  <h:selectOneRadio value="#{bean.yval}">
+                     <f:selectItem itemValue="-2" itemLabel="-2"/>
+                     <f:selectItem itemValue="-1.5" itemLabel="-1,5"/>
+                     <f:selectItem itemValue="-1" itemLabel="-1"/>
+                     <f:selectItem itemValue="-0.5" itemLabel="-0,5"/>
+                     <f:selectItem itemValue="0" itemLabel="0"/>
+                     <f:selectItem itemValue="0.5" itemLabel="0,5"/>
+                     <f:selectItem itemValue="1" itemLabel="1"/>
+                     <f:selectItem itemValue="1.5" itemLabel="1,5"/>
+                     <f:selectItem itemValue="2" itemLabel="2"/>
+                  </h:selectOneRadio>
+               </h:panelGrid>
+            </h:form>
+         </h:panelGrid>
+      </h:panelGrid>
+   </h:form>
+</h:body>
+</html>
